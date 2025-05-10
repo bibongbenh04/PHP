@@ -17,7 +17,7 @@
 
                     <span class="kt-subheader__separator kt-subheader__separator--v"></span>
 
-                    <span class="kt-subheader__desc">#XRS-45670</span>
+
 
                     <div class="kt-input-icon kt-input-icon--right kt-subheader__search kt-hidden">
                         <input type="text" class="form-control" placeholder="Search order..." id="generalSearch">

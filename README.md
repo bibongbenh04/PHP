@@ -13,23 +13,14 @@ The Hospital Management System (HMS) is a software program designed to help hosp
 - **Reports and Analytics**: Generate detailed reports and analytics on hospital operations.
 - **Notifications**: Email and SMS notifications for appointments, billing, and other alerts.
 
-## Installation
+## Setup
 
-To get started with the Hospital Management System, follow these steps:
-
-### Prerequisites
-
-- PHP >= 8.0
-- Composer
-- MySQL
-- Node.js and NPM
-
-### Steps
+Để bắt đầu với hệ thống Quản lý Bệnh viện, thực hiện các bước sau:
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/XpertBotTeam/hospital-system-mangment
-    cd hospital-system-mangment
+    git clone https://github.com/bibongbenh04/PHP.git
+    cd PHP
     ```
 
 2. **Install PHP dependencies:**
@@ -92,19 +83,3 @@ To get started with the Hospital Management System, follow these steps:
 
 - **Schedule Appointments:** Book and manage patient appointments.
 - **Patient Registration:** Register new patients and update existing patient information.
-
-
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-## Acknowledgements
-
-We would like to thank the Laravel community for their valuable resources and support.
-
-
-
----
-
-Thank you for using the Hospital Management System. We hope it helps you manage your hospital efficiently and effectively.
