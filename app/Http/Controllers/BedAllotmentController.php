@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Bed;
-use App\BedAllotment;
-use App\Patient;
-use App\User;
+use App\Models\Bed;
+use App\Models\BedAllotment;
+use App\Models\Patient;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;

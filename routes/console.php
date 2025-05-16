@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Artisan;
 | simple approach to interacting with each command's IO methods.
 |
 */
+Auth::routes();
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());

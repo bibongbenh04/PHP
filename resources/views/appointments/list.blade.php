@@ -47,10 +47,12 @@
                     <div class="kt-portlet__head-toolbar">
                         <div class="kt-portlet__head-wrapper">
                             <div class="kt-portlet__head-actions">
-                                <a href="{{route('appointments.create')}}" class="btn btn-brand btn-elevate btn-icon-sm">
-                                    <i class="la la-plus"></i>
-                                    Add Appointment
-                                </a>
+                            <form action="{{ route('appointments.create') }}" method="GET">
+                                @csrf
+                                <!-- Các trường dữ liệu khác của form -->
+                                <input type="hidden" name="returnURL" value="{{ url()->current() }}">
+                                <button type="submit">Create Appointment</button>
+                            </form>
                             </div>
                         </div>
                     </div>
@@ -94,9 +96,7 @@
                                 <tbody>
                                 @foreach($appointments as $appointment)
                                     <tr>
-                                        <td>{{$appointment->patient->first_name}}</td>
                                         <td>{{$appointment->doctor->first_name}}</td>
-                                        <td>{{$appointment->department->name}}</td>
                                         <td>{{$appointment->date.' / '.$appointment->time}}</td>
                                         <td>{{$appointment->status}}</td>
                                         <td>
@@ -146,7 +146,6 @@
                                 <tbody>
                                 @foreach($pendingAppointments as $appointment)
                                     <tr>
-                                        <td>{{$appointment->patient->first_name}}</td>
                                         <td>{{$appointment->doctor->first_name}}</td>
                                         <td>{{$appointment->department->name}}</td>
                                         <td>{{$appointment->date.' / '.$appointment->time}}</td>
@@ -197,7 +196,6 @@
                                 <tbody>
                                 @foreach($confirmedAppointments as $appointment)
                                     <tr>
-                                        <td>{{$appointment->patient->first_name}}</td>
                                         <td>{{$appointment->doctor->first_name}}</td>
                                         <td>{{$appointment->department->name}}</td>
                                         <td>{{$appointment->date.' / '.$appointment->time}}</td>
@@ -301,7 +299,6 @@
                                     <tr>
                                         <td>{{$appointment->patient->first_name}}</td>
                                         <td>{{$appointment->doctor->first_name}}</td>
-                                        <td>{{$appointment->department->name}}</td>
                                         <td>{{$appointment->date.' / '.$appointment->time}}</td>
                                         <td>
                                      <span class="dropdown">

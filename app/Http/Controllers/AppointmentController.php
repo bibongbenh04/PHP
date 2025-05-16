@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Department;
-use App\Appointment;
-use App\Finance;
-use App\Payment;
-use App\TimeSchedule;
-use App\User;
+use App\Models\Department;
+use App\Models\Appointment;
+use App\Models\Finance;
+use App\Models\Payment;
+use App\Models\TimeSchedule;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -47,9 +47,7 @@ class AppointmentController extends Controller
         foreach (Appointment::all() as $appointment){
 
             $date_time = $appointment->date.' '.$appointment->time;
-            //$end_date_time = $appointment->end_date.' '.$appointment->end_time;
 
-            //$bed = $appointment->bed;
             if (Carbon::parse($date_time)->lt(now()) && $appointment->status == 'confirmed'){
                 $appointment->update([
                     'status'=> 'Treated'
@@ -69,20 +67,33 @@ class AppointmentController extends Controller
             ->with('appointments', Appointment::all());
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('appointments.create')
-            ->with('doctors', User::doctor()->get())
-            ->with('patients', User::patient()->get())
-            ->with('departments', Department::all())
-            ->with('timeschedules', TimeSchedule::all());
+        $returnURL = $request->input('returnURL', route('appointments.index'));
+        return view('appointments.create', [
+            'returnURL' => $returnURL,
+            'doctors' => User::doctor()->get(),
+            'patients' => User::patient()->get(),
+            'departments' => Department::all(),
+            'timeschedules' => TimeSchedule::all(),
+        ]);
     }
 
     public function store(Request $request)
     {
         if ($request->patient != 0){
-            $patient = $request->patient;
-        } else {
+            if (is_numeric($request->patient)) {
+                $patient = $request->patient;
+            } else {
+                $patient = User::create([
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
+                    'email' => 'default@clinic.com',
+                    'type'=> 'patient'
+                ]);
+            }
+        }
+        else {
             $patient = User::create([
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
@@ -91,7 +102,7 @@ class AppointmentController extends Controller
             ]);
         }
         Appointment::create([
-            'patient_id' => $patient->id,
+            'patient_id' =>  is_numeric($patient) ? $patient : $patient->id,
             'doctor_id' => $request->doctor,
             'department_id' => $request->department,
             'date' => $request->date,
@@ -105,7 +116,7 @@ class AppointmentController extends Controller
                 $c = str_replace('%', '', $request->commission);
                 $commission = $request->price * $c / 100;
             } else {
-                $commission = $request->commission;
+                $commission = $request->commission !== null && $request->commission !== '' ? $request->commission : 0;
             }
             $payment = Payment::create([
                 'doctor_id' => $request->doctor,
@@ -129,7 +140,19 @@ class AppointmentController extends Controller
         // flash message
         session()->flash('success', 'New Appointment Added Successfully.');
         // redirect user
-        return redirect(route('appointments.index'));
+        $returnURL = $request->input('returnURL', route('appointments.index'));
+        return redirect($returnURL);
+    }
+
+    public function destroy(Appointment $Appointment)
+    {
+        $Appointment->delete();
+
+        // flash message
+        session()->flash('success', 'Time Schedule Deleted Successfully.');
+        // redirect user
+        $returnURL = $request->input('returnURL', route('appointments.index'));
+        return redirect($returnURL);
     }
 
     public function show(Appointment $Appointment)
@@ -166,16 +189,6 @@ class AppointmentController extends Controller
         return redirect(route('appointments.index'));
     }
 
-    public function destroy(Appointment $Appointment)
-    {
-        $Appointment->delete();
-
-        // flash message
-        session()->flash('success', 'Time Schedule Deleted Successfully.');
-        // redirect user
-        return redirect(route('appointments.index'));
-    }
-
     public function createAppointmentForDoctor(User $doctor)
     {
         return view('appointments.create')->with('doctor', $doctor);
@@ -186,4 +199,15 @@ class AppointmentController extends Controller
         return view('appointments.list')->with('doctor', $doctor);
     }
 
+    public function getAppointmentsByDoctorAndPatient(Request $request)
+    {
+        $doctorId = $request->doctor_id;
+        $patientId = $request->patient_id;
+
+        $appointments = Appointment::where('doctor_id', $doctorId)
+            ->where('patient_id', $patientId)
+            ->get();
+
+        return response()->json(['appointments' => $appointments]);
+    }
 }

@@ -127,4 +127,17 @@ class User extends Authenticatable
     public function hasDepartment($departmentId){
         return in_array($departmentId,$this->departments->pluck('id')->toArray());
     }
+
+    public static function createAccount($data) {
+        $data['password'] = bcrypt($data['password']);
+        return self::create($data);
+    }
+
+    public static function checkAccount($email, $password) {
+        $user = self::where('email', $email)->first();
+        if ($user && Hash::check($password, $user->password)) {
+            return $user;
+        }
+        return null;
+    }
 }

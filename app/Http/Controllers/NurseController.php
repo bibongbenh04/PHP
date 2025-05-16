@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Department;
-use App\Nurse;
-use App\User;
+use App\Models\Department;
+use App\Models\Nurse;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;

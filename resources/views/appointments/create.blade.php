@@ -133,6 +133,7 @@
                               action="{{isset($appointment) ? route('appointments.update',$appointment->id) : route('appointments.store')}}"
                               method="POST"
                               enctype="multipart/form-data">
+                              <input type="hidden" name="returnURL" value="{{$returnURL}}">
                             <div class="kt-portlet__body">
                                 <div class="form-group form-group-last">
                                     <div class="alert alert-secondary" role="alert">
@@ -189,14 +190,23 @@
                                            </span>
                                         </div>
                                         @if(isset($departments))
-                                            <select class="form-control" name="department" id="department">
-                                                <option>select department</option>
-                                                @foreach($departments as $department)
-                                                    <option
-                                                        value="{{$department->id}}" @if(isset($appointment)) {{$department->id == $appointment->department_id ? 'selected' : ''}} @endif>{{$department->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        @endif
+                                        <select class="form-control" name="department" id="department">
+                                            <option value="">Select Department</option>
+                                            @foreach($departments as $department)
+                                                <option
+                                                    value="{{ $department->id }}"
+                                                    @if(
+                                                        (isset($appointment) && $department->id == $appointment->department_id) ||
+                                                        (isset($doctorDepartmentId) && $department->id == $doctorDepartmentId)
+                                                    )
+                                                        selected
+                                                    @endif
+                                                >
+                                                    {{ $department->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    @endif
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -258,7 +268,7 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text"><i
                                                     class="fa fa-dollar-sign"></i></span></div>
-                                        <input class="form-control" type="text" name="price" id="price" readonly>
+                                        <input class="form-control" type="text" name="price" id="price">
                                         <input class="form-control" type="hidden" name="commission" id="commission">
                                         <input class="form-control" type="hidden" name="item" id="item">
 

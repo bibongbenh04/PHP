@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Diagnosis;
-use App\Doctor;
-use App\Medicine;
-use App\Patient;
-use App\Prescription;
-use App\User;
+use App\Models\Diagnosis;
+use App\Models\Doctor;
+use App\Models\Medicine;
+use App\Models\Patient;
+use App\Models\Prescription;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;

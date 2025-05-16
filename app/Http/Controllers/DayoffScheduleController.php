@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\DayoffSchedule;
-use App\Doctor;
-use App\User;
+use App\Models\DayoffSchedule;
+use App\Models\Doctor;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

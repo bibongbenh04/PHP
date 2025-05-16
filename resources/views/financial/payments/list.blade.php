@@ -81,7 +81,6 @@
                         <tbody>
                         @foreach($payments as $payment)
                             <tr>
-                                <td>{{$payment->patient->first_name}}</td>
                                 <td>{{$payment->doctor->first_name}}</td>
                                 <td>{{$payment->sub_total}}</td>
                                 <td>{{$payment->taxes}}</td>

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Doctor;
-use App\LapReport;
-use App\LapTemplate;
-use App\Patient;
-use App\User;
+use App\Models\Doctor;
+use App\Models\LapReport;
+use App\Models\LapTemplate;
+use App\Models\Patient;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LapReportController extends Controller

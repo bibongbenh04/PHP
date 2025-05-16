@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\CaseHistory;
-use App\Patient;
-use App\User;
+use App\Models\CaseHistory;
+use App\Models\Patient;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CaseHistoryController extends Controller

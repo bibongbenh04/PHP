@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\BloodBank;
+use App\Models\BloodBank;
 use Illuminate\Http\Request;
 
 class BloodBankController extends Controller
@@ -41,7 +41,7 @@ class BloodBankController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\BloodBank  $bloodBank
+     * @param  \App\Models\BloodBank  $bloodBank
      * @return \Illuminate\Http\Response
      */
     public function show(BloodBank $bloodBank)
@@ -52,7 +52,7 @@ class BloodBankController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\BloodBank  $bloodBank
+     * @param  \App\Models\BloodBank  $bloodBank
      * @return \Illuminate\Http\Response
      */
     public function edit(BloodBank $bloodBank)
@@ -64,7 +64,7 @@ class BloodBankController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\BloodBank  $bloodBank
+     * @param  \App\Models\BloodBank  $bloodBank
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, BloodBank $bloodBank)
@@ -75,7 +75,7 @@ class BloodBankController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\BloodBank  $bloodBank
+     * @param  \App\Models\BloodBank  $bloodBank
      * @return \Illuminate\Http\Response
      */
     public function destroy(BloodBank $bloodBank)

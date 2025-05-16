@@ -1,21 +1,12 @@
 <?php
-
+use App\Http\Controllers\DoctorDashboardController;
+use App\Http\Controllers\NurseDashboardController;
+use App\Http\Controllers\ReceptionistDashboardController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
+// Auth::routes();
 Route::get('/', function () {
-    return view('users.admin.dashboard');
-})->name('admin-dashboard');
+ return view('users.admin.dashboard');
+})->middleware('auth')->name('admin.dashboard');
 
 Route::resource('/departments', 'DepartmentController');
 Route::get('/treatmenthistory/{doctor}', 'DoctorController@treatmentHistory')->name('treatment-history');
@@ -46,6 +37,7 @@ Route::resource('/payments', 'PaymentController');
 Route::resource('/paymentitems', 'PaymentItemController');
 Route::resource('/expenses', 'ExpenseController');
 
+Auth::routes();
 
 Route::get('/getdoctorsbydepartment/', 'AppointmentController@getDoctorsByDepartment')->name('get-doctors-by-department');
 Route::get('/gettimeschedulebydoctor/', 'DoctorController@getTimeScheduleByDoctor')->name('get-time-schedule-by-doctor');
@@ -57,3 +49,19 @@ Route::get('/gettemplatebyid/', 'LapReportController@getTemplateById')->name('ge
 Route::get('/getpaymentitembyitemid/', 'PaymentItemController@getPaymentItemByItemId')->name('get-payment-item-by-item-id');
 Route::get('/getpaymentitembydoctorid/', 'PaymentItemController@getPaymentItemByDoctorId')->name('get-payment-item-by-doctor_id');
 Route::get('/getuserbyusertype/', 'PublicController@getUserByUserType')->name('get-user-by-user-type');
+Route::post('/logout', [App\Http\Controllers\Auth\LogoutController::class, 'logout'])->name('logout');
+
+Route::get('/doctor/schedule', [DoctorDashboardController::class, 'viewSchedule'])->name('doctor.schedule');
+Route::get('/doctor/appointments', [DoctorDashboardController::class, 'manageAppointments'])->name('doctor.appointments');
+Route::get('/doctor/records', [DoctorDashboardController::class, 'patientRecords'])->name('doctor.records');
+
+Route::get('/nurse/schedule', [NurseDashboardController::class, 'viewSchedule'])->name('nurse.schedule');
+Route::get('/nurse/appointments', [NurseDashboardController::class, 'manageAppointments'])->name('nurse.appointments');
+Route::get('/nurse/records', [NurseDashboardController::class, 'patientRecords'])->name('nurse.records');
+
+Route::get('/receptionist/schedule', [ReceptionistDashboardController::class, 'scheduleAppointments'])->name('receptionist.schedule');
+Route::get('/receptionist/registration', [ReceptionistDashboardController::class, 'patientRegistration'])->name('receptionist.registration');
+Route::post('/doctor/appointments/create', [DoctorDashboardController::class, 'createAppointment'])->name('doctor.appointments.create');
+Route::put('/doctor/appointments/edit/{id}', [DoctorDashboardController::class, 'editAppointment'])->name('doctor.appointments.edit');
+Route::delete('/doctor/appointments/cancel/{id}', [DoctorDashboardController::class, 'cancelAppointment'])->name('doctor.appointments.cancel');
+

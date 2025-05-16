@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Medicine;
-use App\MedicineCategory;
+use App\Models\Medicine;
+use App\Models\MedicineCategory;
 use Illuminate\Http\Request;
 
 class MedicineController extends Controller

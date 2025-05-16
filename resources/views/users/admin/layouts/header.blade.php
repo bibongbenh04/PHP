@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8"/>
 
-    <title>Hospital Management System</title>
+    <title>Hospital Management System - BABY THREE :3 </title>
     <meta name="description" content="Page with empty content">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -151,11 +151,11 @@
                             <li class="kt-menu__item " aria-haspopup="true"><a
                                     href="{{url('/adminpanel')}}"
                                     class="kt-menu__link "><span
-                                        class="kt-menu__link-text">Dashboard</span></a></li>
+                                        class="kt-menu__link-text"></span></a></li>
                             <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel"
                                 data-ktmenu-submenu-toggle="click" aria-haspopup="true"><a href="javascript:;"
                                                                                            class="kt-menu__link kt-menu__toggle"><span
-                                        class="kt-menu__link-text">Components</span><i
+                                        class="kt-menu__link-text"></span><i
                                         class="kt-menu__ver-arrow la la-angle-right"></i></a>
                                 <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
                                     <ul class="kt-menu__subnav">
@@ -647,7 +647,7 @@
                             <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel"
                                 data-ktmenu-submenu-toggle="click" aria-haspopup="true"><a href="javascript:;"
                                                                                            class="kt-menu__link kt-menu__toggle"><span
-                                        class="kt-menu__link-text">Crud</span><i
+                                        class="kt-menu__link-text"></span><i
                                         class="kt-menu__ver-arrow la la-angle-right"></i></a>
                                 <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
                                     <ul class="kt-menu__subnav">
@@ -1357,7 +1357,7 @@
                             <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel"
                                 data-ktmenu-submenu-toggle="click" aria-haspopup="true"><a href="javascript:;"
                                                                                            class="kt-menu__link kt-menu__toggle"><span
-                                        class="kt-menu__link-text">Apps</span><i
+                                        class="kt-menu__link-text"></span><i
                                         class="kt-menu__ver-arrow la la-angle-right"></i></a>
                                 <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
                                     <ul class="kt-menu__subnav">
@@ -1654,7 +1654,7 @@
                             <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel"
                                 data-ktmenu-submenu-toggle="click" aria-haspopup="true"><a href="javascript:;"
                                                                                            class="kt-menu__link kt-menu__toggle"><span
-                                        class="kt-menu__link-text">Pages</span><i
+                                        class="kt-menu__link-text"></span><i
                                         class="kt-menu__ver-arrow la la-angle-right"></i></a>
                                 <div class="kt-menu__submenu  kt-menu__submenu--fixed kt-menu__submenu--center"
                                      style="width:1000px">
@@ -2300,10 +2300,12 @@
                                         class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">S</span>
                                 </div>
                                 <div class="kt-user-card__name">
-                                    Sean Stone
+                                    <i>{{auth()->user()->first_name }} {{auth()->user()->last_name }}</i>
+                                    <i>{{auth()->user()->id}}</i>
+
                                 </div>
                                 <div class="kt-user-card__badge">
-                                    <span class="btn btn-success btn-sm btn-bold btn-font-md">23 messages</span>
+                                    <span class="btn btn-success btn-sm btn-bold btn-font-md">{{auth()->user()->type}}</span>
                                 </div>
                             </div>
                             <!--end: Head -->
@@ -2383,8 +2385,11 @@
                                     </div>
                                 </a>
                                 <div class="kt-notification__custom kt-space-between">
-                                    <a href="{{url('/adminpanel')}}/demo3/custom/user/login-v2.html" target="_blank"
-                                       class="btn btn-label btn-label-brand btn-sm btn-bold">Sign Out</a>
+                                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                                    @csrf
+                                    <button type="submit" class="btn btn-label btn-label-brand btn-sm btn-bold">Sign Out</button>
+                                </form>
+
 
                                     <a href="{{url('/adminpanel')}}/demo3/custom/user/login-v2.html" target="_blank"
                                        class="btn btn-clean btn-sm btn-bold">Upgrade Plan</a>

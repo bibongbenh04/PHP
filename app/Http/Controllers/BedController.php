@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Bed;
-use App\BedAllotment;
-use App\Department;
+use App\Models\Bed;
+use App\Models\BedAllotment;
+use App\Models\Department;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 

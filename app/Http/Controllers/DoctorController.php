@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Department;
-use App\Doctor;
+use App\Models\Department;
+use App\Models\Doctor;
 use App\Http\Requests\Doctor\CreateDoctorRequest;
 use App\Http\Requests\Doctor\UpdateDoctorRequest;
-use App\TimeSchedule;
-use App\User;
+use App\Models\TimeSchedule;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;

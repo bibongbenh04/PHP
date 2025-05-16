@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Department;
-use App\Service;
-use App\TimeSchedule;
+use App\Models\Department;
+use App\Models\Service;
+use App\Models\TimeSchedule;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Doctor;
-use App\Finance;
-use App\Patient;
-use App\Payment;
-use App\PaymentItem;
-use App\User;
+use App\Models\Doctor;
+use App\Models\Finance;
+use App\Models\Patient;
+use App\Models\Payment;
+use App\Models\PaymentItem;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller

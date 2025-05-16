@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Doctor;
-use App\TimeSchedule;
-use App\User;
+use App\Models\Doctor;
+use App\Models\TimeSchedule;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class TimeScheduleController extends Controller
 {
@@ -48,6 +49,8 @@ class TimeScheduleController extends Controller
 
     public function store(Request $request)
     {
+        $start_time = Carbon::parse($request->start_time);
+        $end_time = $start_time->copy()->addMinutes($request->duration);
         if ($request->week_day == 'saturday') {
             $week_num = 6;
         } elseif ($request->week_day == 'sunday') {
@@ -67,8 +70,8 @@ class TimeScheduleController extends Controller
         $timeSchedule = TimeSchedule::create([
             'week_day' => $request->week_day,
             'week_num' => $week_num,
-            'start_time' => $request->start_time,
-            'end_time' => $request->end_time,
+            'start_time' => $start_time->format('H:i'),
+            'end_time' => $end_time->format('H:i'),
             'duration' => $request->duration,
             'user_id' => $request->user,
         ]);

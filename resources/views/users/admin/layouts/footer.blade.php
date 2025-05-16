@@ -1,3 +1,9 @@
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  chat-title="AIMamXanh"
+  agent-id="e4b0e260-2aad-44bb-83a7-6ed497378077"
+  language-code="en"
+></df-messenger>
 
 <!-- begin:: Footer -->
 <div class="kt-footer  kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer">
@@ -5,7 +11,7 @@
        <center> <div class="kt-footer__copyright">
             2021&nbsp;&copy;&nbsp;<a href="#" target="_blank" class="kt-link">HOSPITAL MANAGEMENT SYSTEM</a></center>
         </div>
-        
+
     </div>
 </div>
 <!-- end:: Footer -->			</div>

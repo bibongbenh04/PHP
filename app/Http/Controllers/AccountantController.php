@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Accountant;
-use App\Department;
-use App\User;
+use App\Models\Accountant;
+use App\Models\Department;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\PaymentItem;
+use App\Models\PaymentItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

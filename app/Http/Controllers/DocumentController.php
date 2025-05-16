@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Doctor;
-use App\Document;
-use App\Patient;
-use App\User;
+use App\Models\Doctor;
+use App\Models\Document;
+use App\Models\Patient;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,7 +19,14 @@ class DocumentController extends Controller
 
     public function create()
     {
-        return view('documents.create')
+        $doctorDepartmentId = null;
+
+        if (auth()->user()->role == 'doctor') {
+            $doctorDepartmentId = \DB::table('department_user')
+                ->where('user_id', auth()->id())
+                ->value('department_id');
+        }
+        return view('documents.create', compact('doctorDepartmentId'))
             ->with('patients', User::patient()->get())
             ->with('doctors', User::doctor()->get());
     }

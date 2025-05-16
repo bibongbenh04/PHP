@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\LapTemplate;
+use App\Models\LapTemplate;
 use Illuminate\Http\Request;
 
 class LapTemplateController extends Controller
